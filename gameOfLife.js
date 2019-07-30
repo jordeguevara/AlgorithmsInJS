@@ -65,29 +65,92 @@ const isAlive = (val) => {
 // returns # of neighbors 
 const checkNeighbors = (board,row,col) => {
     let numNeighbors =0;
-    // check up and down
+    // check up
     if(board[row +1] && board[row+1][col])
         numNeighbors++;
+    // check down
     if(board[row -1] && board[row-1][col])
-        board[row +1]++;
-    //check left and right
+        numNeighbors++;
+    //check left 
     if(board[row] && board[row][col-1])
         numNeighbors++;
+     // check right
     if(board[row] && board[row][col+1])
          numNeighbors++;
-    // check diagnol
+    // check down - right
     if(board[row-1] && board[row-1][col +1])
          numNeighbors++;
-    if(board[row +1] && board[row+1][col -1])
+    // check down - left 
+    if(board[row -1] && board[row-1][col -1])
          numNeighbors++;
-    if(board[row-1] && board[row+1][col -1])
+    //check up = left
+    if(board[row+1] && board[row+1][col -1])
          numNeighbors++;
-    if(board[row-1] && board[row+1][col +1])
+    //check up - right
+    if(board[row+1] && board[row+1][col +1])
          numNeighbors++;
-    // check other diagnoal
+
     
     return numNeighbors;
 }
 
 
 console.log(gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]]))
+
+
+
+// var gameOfLife = function(board) {
+//     const boardClone = JSON.parse(JSON.stringify(board));
+    
+//     const boardCell = (row, col) => {
+//       if (boardClone[row] !== undefined && boardClone[row][col] !== undefined) {
+          
+//         return Number(boardClone[row][col]);
+//       }
+//       return null;
+//     };
+    
+//     const getNeighbours = (row, col) => {
+//       let dead = 0;
+//       let alive = 0;
+      
+//       const neighbours = [
+//         boardCell(row - 1, col),
+//         boardCell(row + 1, col),
+//         boardCell(row, col - 1),
+//         boardCell(row, col + 1),
+//         boardCell(row - 1, col - 1),
+//         boardCell(row - 1, col + 1),
+//         boardCell(row + 1, col - 1),
+//         boardCell(row + 1, col + 1),
+//       ];
+      
+//       neighbours.forEach(cell => {
+//         if (cell === 1) alive++;
+//         if (cell === 0) dead++;
+//       });
+      
+//       return { dead, alive };
+//     };
+    
+//     const getNextState = (cell, dead, alive) => {
+//       if (cell) {
+//         if (alive < 2) return 0;
+//         if (alive === 2 || alive === 3) return 1;
+//         if (alive > 3) return 0;
+//       } else {
+//         if (alive === 3) return 1;
+//       }
+      
+//       return cell;
+//     };
+    
+//     for(let i=0; i<board.length; i++) {
+//       for(let j=0; j<board[i].length; j++) {
+//         const cell = boardClone[i][j];
+//         const { dead, alive } = getNeighbours(i, j);
+//         board[i][j] = getNextState(cell, dead, alive);
+//       }
+//     }
+//   };
+//    console.log(gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]]))
