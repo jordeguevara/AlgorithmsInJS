@@ -39,6 +39,7 @@ const grid = [
     if(!grid[r] || !grid[r].charAt(c) || grid[r].charAt(c) === '.')
         return;
     if(grid[r].charAt(c) === 'x'){
+        // boundary cases 
         if((grid[r] === undefined || grid[r].charAt(c) === undefined) || ( !grid[r + dx] || !grid[r].charAt(c + dy)) || grid[r +dx].charAt(c + dy) === 'x' || visited[r][c] ){
             return;
         }
@@ -48,11 +49,12 @@ const grid = [
         r = r + dx;
         c = c + dy;
     }
-    checkDiagonals(grid,r+1,c+1,count,arr,1,1,visited); // SouthEast
-    checkDiagonals(grid,r+1,c-1,count,arr,1,-1,visited); //SouthWest
+    // checkDiagonals(grid,r+1,c+1,count,arr,1,1,visited); // SouthEast
+    // checkDiagonals(grid,r+1,c-1,count,arr,1,-1,visited); //SouthWest
     checkDiagonals(grid,r-1,c+1,count,arr,-1,1,visited); // NorthEast
     checkDiagonals(grid,r-1,c-1,count,arr,-1,-1,visited); // NorthWest
     return arr;
   }
+
 
   console.log(maxPawns(grid))
